@@ -1,6 +1,7 @@
 # laravel-react-crud
-
-
+  Laravel 8
+  Reactjs 17.3
+   
 
 # Installation Process
   * Clone the repository
