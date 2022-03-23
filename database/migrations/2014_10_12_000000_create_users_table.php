@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->string('mobile')->unique();
+            $table->bigInteger('mobile')->unique();
             $table->string('password');
             $table->enum('term_condition',['YES', 'NO'])->default('YES');
             $table->timestamps();

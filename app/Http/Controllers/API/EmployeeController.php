@@ -29,8 +29,7 @@ class EmployeeController extends Controller
      */
     public function create(Request $request)
     {
-        echo "<pre>";
-        print_r(request()->all());exit;
+       
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',

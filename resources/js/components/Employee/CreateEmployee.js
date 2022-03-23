@@ -13,20 +13,14 @@ function CreateEmployee() {
     });
    
     const handleChange = (e) =>{
-        const fieldName = e.target.name;
+        let fieldName = e.target.name;
+        let valueName = e.target.value;
         
-        employeeDetails.forEach(function(key , value){
-            console.log("Ket" , key);
-            console.log("value" , value);
-        });
-
-        console.log(employeeDetails)
-        //setEmployeeDetails({[fieldName]:e.target.value})
+        setEmployeeDetails({ ...employeeDetails, [fieldName]: valueName });
     }
 
     const userSubmit = (e) => {
         e.preventDefault();
-        console.log(window.api_url)
         let createEmployeeUrl = `${window.api_url}/employee/create`;
     
         window.$axios.post(createEmployeeUrl , employeeDetails)
