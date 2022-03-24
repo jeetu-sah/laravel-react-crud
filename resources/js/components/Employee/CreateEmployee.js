@@ -15,7 +15,7 @@ function CreateEmployee() {
     const handleChange = (e) =>{
         let fieldName = e.target.name;
         let valueName = e.target.value;
-        
+
         setEmployeeDetails({ ...employeeDetails, [fieldName]: valueName });
     }
 
@@ -27,8 +27,6 @@ function CreateEmployee() {
                             .then( (res) => {
                                 console.log("Success form submit")
                             });
-
-
     }
 
 
