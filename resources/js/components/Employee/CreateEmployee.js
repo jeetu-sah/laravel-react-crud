@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { useHistory } from "react-router-dom";
 
-function CreateEmployee() {
 
+function CreateEmployee(props) {
+
+    const history = useHistory();
+   
     const [employeeDetails, setEmployeeDetails] = useState({
         first_name:'Jitu',
         last_name:'Webkul',
@@ -10,6 +14,12 @@ function CreateEmployee() {
         mobile:'8887603331',
         password:'123',
         accept_agreement:true,
+    });
+
+    const [ msgResponse , setMsgResponse] = useState({
+        msgStatus:false,
+        msg:'',
+        msgClass:'',
     });
    
     const handleChange = (e) =>{
@@ -19,14 +29,33 @@ function CreateEmployee() {
         setEmployeeDetails({ ...employeeDetails, [fieldName]: valueName });
     }
 
-    const userSubmit = (e) => {
+    const userSubmit = (e,props) => {
         e.preventDefault();
         let createEmployeeUrl = `${window.api_url}/employee/create`;
     
         window.$axios.post(createEmployeeUrl , employeeDetails)
                             .then( (res) => {
-                                console.log("Success form submit")
+                                if(res.data.status == 200){
+                                    var alertClass = 'alert alert-success';
+                                }else if(res.data.status == 400){
+                                    var alertClass = 'alert alert-danger';
+                                }
+                                setMsgResponse({ ...msgResponse, msgStatus:res.data.status , 
+                                                                msg:res.data.msg, msgClass:alertClass});
                             });
+    }
+
+    const showMsg = (props) =>{
+        if(msgResponse.msgStatus){
+            if(msgResponse.msgStatus == 200){
+                setTimeout(function(){ history.push('/'); } , 1000)
+            }
+            return (
+                <div className={msgResponse.msgClass} role="alert">
+                    {msgResponse.msg}
+                </div>
+            );
+        }
     }
 
 
@@ -35,6 +64,9 @@ function CreateEmployee() {
             <div className="container mt-3 mb-3">
                 <div className="row">
                     <h2>Create Emplyees</h2>
+                </div>
+                <div className="row">
+                   {showMsg()}
                 </div>
                 <form onSubmit={userSubmit}>
                     <div className="row">
@@ -115,7 +147,7 @@ function CreateEmployee() {
                     </div>
                     <button type="submit" 
                         className="btn btn-primary mt-2">Submit</button>
-                    </form>
+                </form>
             </div>
         </>
     );
