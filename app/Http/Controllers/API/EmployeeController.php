@@ -40,7 +40,7 @@ class EmployeeController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' =>400,
-                'response' => $validator->errors(),
+                'msg' => $validator->errors()->first(),
             ]);
         }
         
