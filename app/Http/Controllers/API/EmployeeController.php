@@ -19,7 +19,18 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-       
+       $users = User::all();
+       if($users->count() > 0){
+            return response()->json([
+                    'status' =>200,
+                    'response' => $users,
+                ]);
+       }else {
+            return response()->json([
+                    'status' =>404,
+                    'response' => $users,
+                ]);
+       }
     }
 
     /**

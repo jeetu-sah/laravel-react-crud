@@ -65,9 +65,8 @@ function CreateEmployee(props) {
                 <div className="row">
                     <h2>Create Emplyees</h2>
                 </div>
-                <div className="row">
-                   {showMsg()}
-                </div>
+                {showMsg()}
+                
                 <form onSubmit={userSubmit}>
                     <div className="row">
                         <div className="col-4">

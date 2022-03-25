@@ -19,6 +19,7 @@ use App\Http\Controllers\API\EmployeeController;
     return $request->user();
 }); */
 
+Route::post('employee/list', [EmployeeController::class, 'index']);
 Route::post('employee/create', [EmployeeController::class, 'create']);
 
 //Route::get('employee/create' , )
