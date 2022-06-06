@@ -23,7 +23,6 @@ function ListEmployee() {
 
     const loadEmployeeList = () => {
             if(employeeListStatus == 200){
-                console.log(employeeList);
                 return (
                   <>
                     {employeeList.map((employee, index) => (
@@ -33,6 +32,9 @@ function ListEmployee() {
                         <td>{employee.last_name}</td>
                         <td>{employee.email}</td>
                         <td>{employee.mobile}</td>
+                        <td>
+                          <i class="bi bi-pencil-square"></i>
+                        </td>
                       </tr>
                     ))}
                   </>
@@ -66,7 +68,6 @@ function ListEmployee() {
               </thead>
               <tbody>
                 {loadEmployeeList()}
-               
               </tbody>
             </table>
           </div>

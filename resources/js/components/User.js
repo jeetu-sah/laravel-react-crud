@@ -10,8 +10,6 @@ import axios from 'axios';
 
 window.$axios = axios;
 
-
-
 function User() {
     return (
         <>
@@ -20,7 +18,6 @@ function User() {
                     <Switch>
                         <Route path="/" exact={true} component={ListEmployee} />
                         <Route path="/employee/create" component={CreateEmployee} />
-
                         <Route path="*" component={NotFoundPage} />
                     </Switch>
             </Routes>
